@@ -6,7 +6,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const db = new sqlite3.Database("./db/database.sqlite");
+const path = require("path");
+
+const dbPath = path.join("/tmp", "database.sqlite");
+const db = new sqlite3.Database(dbPath);
+
 
 db.run(`
   CREATE TABLE IF NOT EXISTS expenses (
